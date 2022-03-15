@@ -1,0 +1,21 @@
+{
+    "name": "omniverse-snippets",
+    "displayName": "Omniverse Snippets",
+    "description": "Python Snippets for Omniverse development",
+    "version": "0.0.1",
+    "publisher":"CaptainCoding",
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "categories": [
+        "Snippets"
+    ],
+    "contributes": {
+        "snippets": [
+            {
+                "language": "python",
+                "path": "./snippets/snippets.code-snippets"
+            }
+        ]
+    }
+}

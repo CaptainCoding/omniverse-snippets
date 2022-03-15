@@ -1,0 +1,130 @@
+{
+    "Import omni Packages": {
+        "prefix": ["ov import omni"],
+        "body": ["import carb"
+                ,"import carb.input"
+                ,"import omni.kit.app"
+                ,"import omni.usd"
+                ,"import omni.ext"],
+        "description": "import omni packages"
+    },
+    "Import pxr Packages": {
+        "prefix": ["ov import pxr"],
+        "body": ["from pxr import Usd, UsdGeom, UsdPhysics, UsdShade, Sdf, Gf, Tf"],
+        "description": "import pxr packages"
+    },
+    "Get Stage": {
+        "prefix": ["ov get stage"],
+        "body": ["stage = omni.usd.get_context().get_stage()"],
+        "description": "get current stage"
+    },
+    "Get Prim At Path": {
+        "prefix": ["ov get prim"],
+        "body": ["${2:prim} = stage.GetPrimAtPath(${1|path,'/World/'|})"],
+        "description": "get a prim at path ..."
+    },
+    "New Stage": {
+        "prefix": ["ov new stage"],
+        "body": ["omni.usd.get_context().new_stage()"],
+        "description": "create a new stage"
+    },
+    "Set Prim Translate": {
+        "prefix": ["ov set prim translate"],
+        "body": ["UsdGeom.XformCommonAPI(${1:prim}).SetTranslate(${2:vec})"],
+        "description": "set the translate of a prim"
+    },
+    "Get Prim Translate": {
+        "prefix": ["ov get prim translate"],
+        "body": ["${2:tattr} = ${1:prim}.GetAttribute(\"xformOp:translate\")",
+                 "if ${2}.IsValid():",
+                 "\t${3:tvec} = ${2}.Get()"],
+        "description": "get the translate of a prim"
+    },
+    "Set Prim Rotation": { 
+        "prefix": ["ov set prim rotation"],
+        "body": ["UsdGeom.XformCommonAPI(${1:prim}).SetRotate(${2:vec}, ${3|UsdGeom.XformCommonAPI.RotationOrderXYZ,UsdGeom.XformCommonAPI.RotationOrderXZY,UsdGeom.XformCommonAPI.RotationOrderYXZ,UsdGeom.XformCommonAPI.RotationOrderYZX,UsdGeom.XformCommonAPI.RotationOrderZXY,UsdGeom.XformCommonAPI.RotationOrderZYX|})"],
+        "description": "set the rotation of a prim"
+    },
+    "Get Prim Rotation": { 
+        "prefix": ["ov get prim rotation"],
+        "body": ["${2:rattr} = ${1:prim}.GetAttribute(\"xformOp:rotateXYZ\")",
+                 "if ${2}.IsValid():",
+                 "\t${3:rvec} = ${2}.Get()"],
+        "description": "get the rotation of a prim"
+    },
+    "Set Prim Scale": { 
+        "prefix": ["ov set prim scale"],
+        "body": ["UsdGeom.XformCommonAPI(${1:prim}).SetScale(${2:vec})"],
+        "description": "set the scale of a prim"
+    },
+    "Get Prim Scale": { 
+        "prefix": ["ov get prim scale"],
+        "body": ["${2:sattr} = ${1:prim}.GetAttribute(\"xformOp:scale\")",
+                 "if ${2}.IsValid():",
+                 "\t${3:svec} = ${2}.Get()"],
+        "description": "get the scale of a prim"
+    },
+    "Define Xform": {
+        "prefix": ["ov define xform"],
+        "body": ["UsdGeom.Xform.Define(${1:stage}, ${2:path})"],
+        "description": "creates a new xform"
+    },
+    "Define Cube": {
+        "prefix": ["ov define cube"],
+        "body": ["cube = UsdGeom.Cube.Define(${1:stage}, ${2:path})", 
+                 "cube.CreateSizeAttr(10.0)"],
+        "description": "creates a new cube"
+    },
+    "Define Sphere": {
+        "prefix": ["ov define sphere"],
+        "body": ["sphere = UsdGeom.Sphere.Define(${1:stage}, ${2:path})",
+                 "sphere.CreateRadiusAttr(5.0)"],
+        "description": "creates a new sphere"
+    },
+    "Define Camera": {
+        "prefix": ["ov define camera"],
+        "body": ["camera = UsdGeom.Camera.Define(${1:stage}, ${2:path})",
+        "camera.CreateFocalLengthAttr(23.0)",
+        "camera.CreateFocusDistanceAttr(300.0)",
+        "camera.CreateFStopAttr(0.0)",
+        "camera.CreateProjectionAttr('perspective')"],
+        "description": "creates a new camera"
+    },
+    "Activate Camera": {
+        "prefix": ["ov activate camera"],
+        "body": ["viewport = omni.kit.viewport.get_viewport_interface()",
+                 "viewport.get_viewport_window().set_active_camera(${path})"],
+        "description": "activates a existent camera by path"
+    },
+    "Get Attribute": {
+        "prefix": ["ov get attribute"],
+        "body": ["${2:attr} = ${1:prim}.GetAttribute(\"${2:attr}\")"],
+        "description": "get an attribute"
+    },
+    "Set Kind": {
+        "prefix": ["ov set kind"],
+        "body": ["Usd.ModelAPI(${1:prim}).SetKind(${2|Kind.Tokens.component,Kind.Tokens.subcomponent,Kind.Tokens.group,Kind.Tokens.assembly|})"],
+        "description": "set a kind"
+    },
+    
+/*
+define mesh
+get up axis
+set up axis
+
+add material
+
+update event
+before update event
+after update event
+key event
+mouse event
+
+physics add rigidbody
+physics add collider
+physics add material
+
+*/
+
+
+}
