@@ -105,12 +105,36 @@
         "prefix": ["ov set kind"],
         "body": ["Usd.ModelAPI(${1:prim}).SetKind(${2|Kind.Tokens.component,Kind.Tokens.subcomponent,Kind.Tokens.group,Kind.Tokens.assembly|})"],
         "description": "set a kind"
+    },    
+    "Set Up Axis": {
+        "prefix": ["ov set stage up axis"],
+        "body": ["UsdGeom.SetStageUpAxis(stage, ${2|UsdGeom.Tokens.y,UsdGeom.Tokens.z|})"],
+        "description": "set the up axis"
     },
-    
+    "Set Meters Per Unit": {
+        "prefix": ["ov set meters per unit"],
+        "body": ["UsdGeom.SetStageMetersPerUnit(stage, ${2|UsdGeom.LinearUnits.meters,UsdGeom.LinearUnits.centimeters,UsdGeom.LinearUnits.millimeters,UsdGeom.LinearUnits.micrometers,UsdGeom.LinearUnits.nanometers,UsdGeom.LinearUnits.kilometers|})"],
+        "description": "set the meters per unit"
+    },
+    "Subscribe To Update Event": {
+        "prefix": ["ov subscribe to update event"],
+        "body": ["def on_update(e: carb.events.IEvent):",
+        "\tpass",
+        "sub = omni.kit.app.get_app().get_update_event_stream().create_subscription_to_pop(on_update)"],
+        "description": "subscribes an update event"
+    },
+    "Subscribe To Shutdown Event": {
+        "prefix": ["ov subscribe to shutdown event"],
+        "body": ["def on_shutdown(e: carb.events.IEvent):",
+        "\tpass",
+        "sub = omni.kit.app.get_app().get_shutdown_event_stream().create_subscription_to_pop(on_shutdown)"],
+        "description": "subscribes a shutdown event"
+    },
+
+
 /*
 define mesh
 get up axis
-set up axis
 
 add material
 

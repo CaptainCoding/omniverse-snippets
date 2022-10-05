@@ -2,7 +2,7 @@
     "name": "omniverse-snippets",
     "displayName": "Omniverse Snippets",
     "description": "Python Snippets for Omniverse development",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "publisher":"CaptainCoding",
     "engines": {
         "vscode": "^1.65.0"
